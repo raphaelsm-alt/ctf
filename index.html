@@ -2,90 +2,159 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Capture a bandeira</title>
+<title>CTF Vértice</title>
 
 <style>
-
-body{
-    background-color:#000;
-    color:#00ff00;
+body {
+    background: #000;
+    color: #00ff00;
     font-family: Consolas, monospace;
-    margin:0;
+    margin: 0;
 }
 
-.container{
-    width:80%;
-    margin:auto;
-    margin-top:50px;
-    border:1px solid #00aa00;
-    padding:40px;
-    box-shadow:0 0 20px #00ff00;
+.container {
+    width: 80%;
+    margin: 40px auto;
+    border: 1px solid #00aa00;
+    padding: 35px;
+    box-shadow: 0 0 20px #00ff00;
 }
 
-h1{
-    font-size:60px;
-    text-align:center;
-    text-shadow:0 0 10px #00ff00;
+h1 {
+    text-align: center;
+    font-size: 48px;
+    text-shadow: 0 0 10px #00ff00;
 }
 
-p{
-    font-size:25px;
-    line-height:1.8;
+h2 {
+    color: #00ff00;
 }
 
-.botao{
-    background:black;
-    color:#00ff00;
-    border:1px solid #00ff00;
-    padding:20px;
-    font-size:25px;
-    cursor:pointer;
+p {
+    font-size: 20px;
+    line-height: 1.6;
 }
 
-.botao:hover{
-    background:#003300;
+.terminal {
+    border: 1px solid #00aa00;
+    padding: 20px;
+    margin-top: 25px;
+    background: #020202;
 }
 
-.terminal{
-    margin-top:40px;
-    border:1px solid #00aa00;
-    padding:20px;
-    line-height:2;
+input {
+    background: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 12px;
+    font-size: 18px;
+    width: 80%;
+    font-family: Consolas, monospace;
 }
 
+button {
+    background: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: Consolas, monospace;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #003300;
+}
+
+.erro {
+    color: #ff4444;
+}
+
+.sucesso {
+    color: #00ff00;
+}
+
+.fase {
+    display: none;
+}
+
+.ativa {
+    display: block;
+}
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Capture a bandeira</h1>
+<h1>CTF VÉRTICE</h1>
 
-<p>> Bem-vindo, agente.</p>
+<div id="fase1" class="fase ativa">
 
-<p>
-Sua missão é resolver enigmas e encontrar a FLAG.
-</p>
+    <div class="terminal">
+        <p>> Sistema iniciado...</p>
+        <p>> Missão 01 carregada.</p>
+        <p>> Localize o ponto indicado pelas coordenadas:</p>
 
-<button class="botao">
-[ INICIAR MISSÃO ]
-</button>
+        <h2>-23.616933510546957, -46.678697875356626</h2>
 
-<div class="terminal">
+        <p>> Copie e cole essas coordenadas no Google Maps.</p>
+        <p>> Qual é o nome do local encontrado?</p>
 
-[09:31:12] Sistema iniciado...<br>
-[09:31:13] Carregando desafios...<br>
-[09:31:14] Verificando habilidades...<br>
-[09:31:15] Acesso autorizado.<br><br>
+        <input id="resposta1" placeholder="Digite a resposta aqui">
+        <br>
+        <button onclick="verificarFase1()">[ ENVIAR RESPOSTA ]</button>
 
-vertice@ctf:~$
-<span id="cursor">█</span>
+        <p id="mensagem1"></p>
+    </div>
 
+</div>
+
+<div id="fase2" class="fase">
+    <div class="terminal">
+        <p>> Acesso autorizado.</p>
+        <p>> Missão 02 desbloqueada.</p>
+        <h2>Próximo desafio em construção...</h2>
+    </div>
 </div>
 
 </div>
+
+<script>
+function normalizar(texto) {
+    return texto
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+function verificarFase1() {
+    let resposta = document.getElementById("resposta1").value;
+    let respostaNormalizada = normalizar(resposta);
+    let mensagem = document.getElementById("mensagem1");
+
+    if (
+        respostaNormalizada === "colegio vertice" ||
+        respostaNormalizada === "colegio vertice colegio" ||
+        respostaNormalizada.includes("colegio vertice")
+    ) {
+        mensagem.textContent = "> Resposta correta. Missão 02 desbloqueada.";
+        mensagem.className = "sucesso";
+
+        setTimeout(function() {
+            document.getElementById("fase1").classList.remove("ativa");
+            document.getElementById("fase2").classList.add("ativa");
+        }, 1200);
+
+    } else {
+        mensagem.textContent = "> Acesso negado. Verifique o local encontrado.";
+        mensagem.className = "erro";
+    }
+}
+</script>
 
 </body>
 </html>
