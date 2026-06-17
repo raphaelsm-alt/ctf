@@ -26,10 +26,6 @@ h1 {
     text-shadow: 0 0 10px #00ff00;
 }
 
-h2 {
-    color: #00ff00;
-}
-
 p {
     font-size: 20px;
     line-height: 1.6;
@@ -67,20 +63,20 @@ button:hover {
     background: #003300;
 }
 
-.erro {
-    color: #ff4444;
-}
-
-.sucesso {
-    color: #00ff00;
-}
-
 .fase {
     display: none;
 }
 
 .ativa {
     display: block;
+}
+
+.erro {
+    color: #ff4444;
+}
+
+.sucesso {
+    color: #00ff00;
 }
 </style>
 </head>
@@ -89,40 +85,53 @@ button:hover {
 
 <div class="container">
 
-<h1>CTF VÉRTICE</h1>
+    <h1>CTF VÉRTICE</h1>
 
-<div id="fase1" class="fase ativa">
+    <div id="inicio" class="fase ativa">
+        <div class="terminal">
+            <p>> Sistema iniciado...</p>
+            <p>> Bem-vindo, agente.</p>
+            <p>> Sua missão é resolver enigmas e avançar pelos níveis do sistema.</p>
+            <p>> Clique no botão abaixo para iniciar.</p>
 
-    <div class="terminal">
-        <p>> Sistema iniciado...</p>
-        <p>> Missão 01 carregada.</p>
-        <p>> Localize o ponto indicado pelas coordenadas:</p>
-
-        <h2>-23.616933510546957, -46.678697875356626</h2>
-
-        <p>> Copie e cole essas coordenadas no Google Maps.</p>
-        <p>> Qual é o nome do local encontrado?</p>
-
-        <input id="resposta1" placeholder="Digite a resposta aqui">
-        <br>
-        <button onclick="verificarFase1()">[ ENVIAR RESPOSTA ]</button>
-
-        <p id="mensagem1"></p>
+            <button onclick="iniciarMissao()">[ INICIAR MISSÃO ]</button>
+        </div>
     </div>
 
-</div>
+    <div id="fase1" class="fase">
+        <div class="terminal">
+            <p>> Missão 01 carregada.</p>
+            <p>> Localize o ponto indicado pelas coordenadas:</p>
 
-<div id="fase2" class="fase">
-    <div class="terminal">
-        <p>> Acesso autorizado.</p>
-        <p>> Missão 02 desbloqueada.</p>
-        <h2>Próximo desafio em construção...</h2>
+            <h2>-23.616933510546957, -46.678697875356626</h2>
+
+            <p>> Copie e cole essas coordenadas no Google Maps.</p>
+            <p>> Qual é o nome do local encontrado?</p>
+
+            <input id="resposta1" placeholder="Digite a resposta aqui">
+            <br>
+            <button onclick="verificarFase1()">[ ENVIAR RESPOSTA ]</button>
+
+            <p id="mensagem1"></p>
+        </div>
     </div>
-</div>
+
+    <div id="fase2" class="fase">
+        <div class="terminal">
+            <p>> Acesso autorizado.</p>
+            <p>> Missão 02 desbloqueada.</p>
+            <h2>Próximo desafio em construção...</h2>
+        </div>
+    </div>
 
 </div>
 
 <script>
+function iniciarMissao() {
+    document.getElementById("inicio").classList.remove("ativa");
+    document.getElementById("fase1").classList.add("ativa");
+}
+
 function normalizar(texto) {
     return texto
         .trim()
@@ -136,11 +145,7 @@ function verificarFase1() {
     let respostaNormalizada = normalizar(resposta);
     let mensagem = document.getElementById("mensagem1");
 
-    if (
-        respostaNormalizada === "colegio vertice" ||
-        respostaNormalizada === "colegio vertice colegio" ||
-        respostaNormalizada.includes("colegio vertice")
-    ) {
+    if (respostaNormalizada.includes("colegio vertice")) {
         mensagem.textContent = "> Resposta correta. Missão 02 desbloqueada.";
         mensagem.className = "sucesso";
 
