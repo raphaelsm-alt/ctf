@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Meu CTF</title>
+<meta charset="UTF-8">
+<title>CTF Vértice</title>
+
+<style>
+
+body{
+    background-color:#000;
+    color:#00ff00;
+    font-family: Consolas, monospace;
+    margin:0;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+    margin-top:50px;
+    border:1px solid #00aa00;
+    padding:40px;
+    box-shadow:0 0 20px #00ff00;
+}
+
+h1{
+    font-size:60px;
+    text-align:center;
+    text-shadow:0 0 10px #00ff00;
+}
+
+p{
+    font-size:25px;
+    line-height:1.8;
+}
+
+.botao{
+    background:black;
+    color:#00ff00;
+    border:1px solid #00ff00;
+    padding:20px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.botao:hover{
+    background:#003300;
+}
+
+.terminal{
+    margin-top:40px;
+    border:1px solid #00aa00;
+    padding:20px;
+    line-height:2;
+}
+
+</style>
+
 </head>
+
 <body>
-    <h1>CTF do Colégio Vértice</h1>
-    <p>Seja bem-vindo!</p>
+
+<div class="container">
+
+<h1>CTF VÉRTICE</h1>
+
+<p>> Bem-vindo, agente.</p>
+
+<p>
+Sua missão é resolver enigmas e encontrar a FLAG.
+</p>
+
+<button class="botao">
+[ INICIAR MISSÃO ]
+</button>
+
+<div class="terminal">
+
+[09:31:12] Sistema iniciado...<br>
+[09:31:13] Carregando desafios...<br>
+[09:31:14] Verificando habilidades...<br>
+[09:31:15] Acesso autorizado.<br><br>
+
+vertice@ctf:~$
+<span id="cursor">█</span>
+
+</div>
+
+</div>
+
 </body>
 </html>
