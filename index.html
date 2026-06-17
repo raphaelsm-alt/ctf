@@ -6,7 +6,6 @@
 <title>CTF Vértice</title>
 
 <style>
-
 body{
     background-color:black;
     color:#00ff00;
@@ -67,7 +66,6 @@ button:hover{
 .sucesso{
     color:#00ff00;
 }
-
 </style>
 </head>
 
@@ -78,193 +76,133 @@ button:hover{
 <h1>CTF VÉRTICE</h1>
 
 <div id="inicio" class="fase ativa">
-
 <div class="terminal">
-
 <p>> Sistema iniciado...</p>
-
 <p>> Bem-vindo, agente.</p>
-
 <p>> Sua missão é resolver os enigmas do sistema.</p>
-
-<button onclick="iniciarMissao()">
-[ INICIAR MISSÃO ]
-</button>
-
+<button onclick="iniciarMissao()">[ INICIAR MISSÃO ]</button>
 </div>
-
 </div>
-
 
 <div id="fase1" class="fase">
-
 <div class="terminal">
-
 <p>> Missão 01 carregada.</p>
-
 <p>> Localize as coordenadas abaixo no Google Maps:</p>
-
 <h2>-23.616933510546957, -46.678697875356626</h2>
-
 <p>> Qual é o nome do local encontrado?</p>
-
 <input id="resposta1">
-
 <br><br>
-
-<button onclick="verificarFase1()">
-[ ENVIAR RESPOSTA ]
-</button>
-
+<button onclick="verificarFase1()">[ ENVIAR RESPOSTA ]</button>
 <p id="mensagem1"></p>
-
 </div>
-
 </div>
-
 
 <div id="fase2" class="fase">
-
 <div class="terminal">
-
 <p>> Acesso autorizado.</p>
-
 <p>> Missão 02 carregada.</p>
-
 <br>
-
-<p>
-> No século XVIII, uma importante cidade mineira se destacou pela exploração do ouro.
-</p>
-
-<p>
-> Seu centro histórico é considerado Patrimônio Mundial pela UNESCO.
-</p>
-
-<p>
-> Entre suas construções mais famosas estão a Igreja de São Francisco de Assis e diversas obras de Aleijadinho.
-</p>
-
-<p>
-> Qual é o nome desta cidade?
-</p>
-
+<p>> No século XVIII, uma importante cidade mineira se destacou pela exploração do ouro.</p>
+<p>> Seu centro histórico é considerado Patrimônio Mundial pela UNESCO.</p>
+<p>> Entre suas construções mais famosas estão a Igreja de São Francisco de Assis e diversas obras de Aleijadinho.</p>
+<p>> Qual é o nome desta cidade?</p>
 <input id="resposta2">
-
 <br><br>
-
-<button onclick="verificarFase2()">
-[ ENVIAR RESPOSTA ]
-</button>
-
+<button onclick="verificarFase2()">[ ENVIAR RESPOSTA ]</button>
 <p id="mensagem2"></p>
-
 </div>
-
 </div>
-
 
 <div id="fase3" class="fase">
-
 <div class="terminal">
+<p>> Missão 03 carregada.</p>
+<br>
+<p>> Eu transformei oficinas em fábricas.</p>
+<p>> Troquei a força manual por máquinas.</p>
+<p>> Fiz o vapor mover engrenagens, locomotivas e navios.</p>
+<p>> Comecei na Inglaterra, no século XVIII, e mudei para sempre o trabalho, a produção e as cidades.</p>
+<p>> Que evento histórico sou eu?</p>
+<input id="resposta3">
+<br><br>
+<button onclick="verificarFase3()">[ ENVIAR RESPOSTA ]</button>
+<p id="mensagem3"></p>
+</div>
+</div>
 
-<p>> Cidade identificada.</p>
-
-<p>> Missão 03 desbloqueada.</p>
-
+<div id="fase4" class="fase">
+<div class="terminal">
+<p>> Evento histórico identificado.</p>
+<p>> Missão 04 desbloqueada.</p>
 <h2>Próximo desafio em construção...</h2>
-
+</div>
 </div>
 
 </div>
-
-</div>
-
 
 <script>
-
 function iniciarMissao(){
-
     document.getElementById("inicio").classList.remove("ativa");
     document.getElementById("fase1").classList.add("ativa");
-
 }
 
 function normalizar(texto){
-
     return texto
     .trim()
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g,"");
-
 }
 
 function verificarFase1(){
-
-    let resposta = document.getElementById("resposta1").value;
-    resposta = normalizar(resposta);
+    let resposta = normalizar(document.getElementById("resposta1").value);
 
     if(resposta.includes("colegio vertice")){
-
-        document.getElementById("mensagem1").innerHTML =
-        "> Resposta correta. Missão 02 desbloqueada.";
-
-        document.getElementById("mensagem1").className="sucesso";
+        document.getElementById("mensagem1").innerHTML = "> Resposta correta. Missão 02 desbloqueada.";
+        document.getElementById("mensagem1").className = "sucesso";
 
         setTimeout(function(){
-
             document.getElementById("fase1").classList.remove("ativa");
             document.getElementById("fase2").classList.add("ativa");
-
         },1200);
-
+    } else {
+        document.getElementById("mensagem1").innerHTML = "> Resposta incorreta.";
+        document.getElementById("mensagem1").className = "erro";
     }
-
-    else{
-
-        document.getElementById("mensagem1").innerHTML =
-        "> Resposta incorreta.";
-
-        document.getElementById("mensagem1").className="erro";
-
-    }
-
 }
-
 
 function verificarFase2(){
+    let resposta = normalizar(document.getElementById("resposta2").value);
 
-    let resposta = document.getElementById("resposta2").value;
-    resposta = normalizar(resposta);
-
-    if(resposta=="ouro preto"){
-
-        document.getElementById("mensagem2").innerHTML =
-        "> Resposta correta. Missão 03 desbloqueada.";
-
-        document.getElementById("mensagem2").className="sucesso";
+    if(resposta == "ouro preto"){
+        document.getElementById("mensagem2").innerHTML = "> Resposta correta. Missão 03 desbloqueada.";
+        document.getElementById("mensagem2").className = "sucesso";
 
         setTimeout(function(){
-
             document.getElementById("fase2").classList.remove("ativa");
             document.getElementById("fase3").classList.add("ativa");
-
         },1200);
-
+    } else {
+        document.getElementById("mensagem2").innerHTML = "> Resposta incorreta. Continue investigando.";
+        document.getElementById("mensagem2").className = "erro";
     }
-
-    else{
-
-        document.getElementById("mensagem2").innerHTML =
-        "> Resposta incorreta. Continue investigando.";
-
-        document.getElementById("mensagem2").className="erro";
-
-    }
-
 }
 
+function verificarFase3(){
+    let resposta = normalizar(document.getElementById("resposta3").value);
+
+    if(resposta.includes("revolucao industrial")){
+        document.getElementById("mensagem3").innerHTML = "> Resposta correta. Missão 04 desbloqueada.";
+        document.getElementById("mensagem3").className = "sucesso";
+
+        setTimeout(function(){
+            document.getElementById("fase3").classList.remove("ativa");
+            document.getElementById("fase4").classList.add("ativa");
+        },1200);
+    } else {
+        document.getElementById("mensagem3").innerHTML = "> Resposta incorreta. Analise novamente as pistas.";
+        document.getElementById("mensagem3").className = "erro";
+    }
+}
 </script>
 
 </body>
