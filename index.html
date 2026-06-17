@@ -131,8 +131,24 @@ button:hover{
 
 <div id="fase4" class="fase">
 <div class="terminal">
-<p>> Evento histórico identificado.</p>
-<p>> Missão 04 desbloqueada.</p>
+<p>> Missão 04 carregada.</p>
+<br>
+<p>> Sou uma relação famosa entre os lados de um triângulo retângulo.</p>
+<p>> Meus catetos trabalham juntos para revelar a hipotenusa.</p>
+<p>> Minha forma mais conhecida é:</p>
+<h2>a² + b² = c²</h2>
+<p>> Qual é o nome deste teorema?</p>
+<input id="resposta4">
+<br><br>
+<button onclick="verificarFase4()">[ ENVIAR RESPOSTA ]</button>
+<p id="mensagem4"></p>
+</div>
+</div>
+
+<div id="fase5" class="fase">
+<div class="terminal">
+<p>> Teorema identificado.</p>
+<p>> Missão 05 desbloqueada.</p>
 <h2>Próximo desafio em construção...</h2>
 </div>
 </div>
@@ -201,6 +217,23 @@ function verificarFase3(){
     } else {
         document.getElementById("mensagem3").innerHTML = "> Resposta incorreta. Analise novamente as pistas.";
         document.getElementById("mensagem3").className = "erro";
+    }
+}
+
+function verificarFase4(){
+    let resposta = normalizar(document.getElementById("resposta4").value);
+
+    if(resposta.includes("teorema de pitagoras")){
+        document.getElementById("mensagem4").innerHTML = "> Resposta correta. Missão 05 desbloqueada.";
+        document.getElementById("mensagem4").className = "sucesso";
+
+        setTimeout(function(){
+            document.getElementById("fase4").classList.remove("ativa");
+            document.getElementById("fase5").classList.add("ativa");
+        },1200);
+    } else {
+        document.getElementById("mensagem4").innerHTML = "> Resposta incorreta. Observe a fórmula com atenção.";
+        document.getElementById("mensagem4").className = "erro";
     }
 }
 </script>
