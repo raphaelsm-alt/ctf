@@ -146,8 +146,24 @@ button:hover{background:#003300;}
 
 <div id="fase6" class="fase">
 <div class="terminal">
-<p>> Cofre desbloqueado.</p>
-<p>> Missão 06 desbloqueada.</p>
+<p>> Missão 06 carregada.</p>
+<p>> Sou conhecido como a "Constituição da Internet" no Brasil.</p>
+<p>> Estabeleço princípios, garantias, direitos e deveres para o uso da rede.</p>
+<p>> Trato de temas como privacidade, liberdade de expressão e neutralidade da rede.</p>
+<p>> Fui aprovado em 2014.</p>
+<p>> Que lei sou eu?</p>
+
+<input id="resposta6" placeholder="Digite a resposta">
+<br><br>
+<button onclick="verificarFase6()">[ ENVIAR RESPOSTA ]</button>
+<p id="mensagem6"></p>
+</div>
+</div>
+
+<div id="fase7" class="fase">
+<div class="terminal">
+<p>> Lei identificada.</p>
+<p>> Missão 07 desbloqueada.</p>
 <h2>Próximo desafio em construção...</h2>
 </div>
 </div>
@@ -262,6 +278,23 @@ function verificarFase5(){
     } else {
         document.getElementById("mensagem5").innerHTML = "> Código incorreto. Revise as pistas do cofre.";
         document.getElementById("mensagem5").className = "erro";
+    }
+}
+
+function verificarFase6(){
+    let resposta = normalizar(document.getElementById("resposta6").value);
+
+    if(resposta.includes("marco civil da internet")){
+        document.getElementById("mensagem6").innerHTML = "> Resposta correta. Missão 07 desbloqueada.";
+        document.getElementById("mensagem6").className = "sucesso";
+
+        setTimeout(function(){
+            document.getElementById("fase6").classList.remove("ativa");
+            document.getElementById("fase7").classList.add("ativa");
+        },1200);
+    } else {
+        document.getElementById("mensagem6").innerHTML = "> Resposta incorreta. Pense em direitos e deveres na rede brasileira.";
+        document.getElementById("mensagem6").className = "erro";
     }
 }
 </script>
