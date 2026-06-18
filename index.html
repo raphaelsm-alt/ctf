@@ -57,7 +57,6 @@ button:hover{background:#003300;}
 <p>> Sistema iniciado...</p>
 <p>> ACESSO RESTRITO</p>
 <p>> Digite a senha para iniciar a operação.</p>
-
 <input id="senha" placeholder="Senha de acesso">
 <br><br>
 <button onclick="verificarSenha()">[ AUTENTICAR ]</button>
@@ -124,8 +123,31 @@ button:hover{background:#003300;}
 
 <div id="fase5" class="fase">
 <div class="terminal">
-<p>> Teorema identificado.</p>
-<p>> Missão 05 desbloqueada.</p>
+<p>> Missão 05 carregada.</p>
+<p>> Cofre digital encontrado.</p>
+<p>> O código possui 3 dígitos.</p>
+<br>
+
+<p><strong>314</strong> → Um número correto e na posição correta.</p>
+<p><strong>527</strong> → Nada está correto.</p>
+<p><strong>143</strong> → Dois números corretos, mas em posições erradas.</p>
+<p><strong>684</strong> → Um número correto, mas em posição errada.</p>
+<p><strong>364</strong> → Dois números corretos, mas em posições erradas.</p>
+
+<br>
+<p>> Qual é o código do cofre?</p>
+
+<input id="resposta5" placeholder="Digite o código">
+<br><br>
+<button onclick="verificarFase5()">[ ENVIAR RESPOSTA ]</button>
+<p id="mensagem5"></p>
+</div>
+</div>
+
+<div id="fase6" class="fase">
+<div class="terminal">
+<p>> Cofre desbloqueado.</p>
+<p>> Missão 06 desbloqueada.</p>
 <h2>Próximo desafio em construção...</h2>
 </div>
 </div>
@@ -223,6 +245,23 @@ function verificarFase4(){
     } else {
         document.getElementById("mensagem4").innerHTML = "> Resposta incorreta. Observe a fórmula com atenção.";
         document.getElementById("mensagem4").className = "erro";
+    }
+}
+
+function verificarFase5(){
+    let resposta = document.getElementById("resposta5").value.trim();
+
+    if(resposta == "134"){
+        document.getElementById("mensagem5").innerHTML = "> Código correto. Missão 06 desbloqueada.";
+        document.getElementById("mensagem5").className = "sucesso";
+
+        setTimeout(function(){
+            document.getElementById("fase5").classList.remove("ativa");
+            document.getElementById("fase6").classList.add("ativa");
+        },1200);
+    } else {
+        document.getElementById("mensagem5").innerHTML = "> Código incorreto. Revise as pistas do cofre.";
+        document.getElementById("mensagem5").className = "erro";
     }
 }
 </script>
