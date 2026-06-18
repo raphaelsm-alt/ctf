@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
 <meta charset="UTF-8">
 <title>CTF Vértice</title>
@@ -12,7 +11,6 @@ body{
     font-family:Consolas, monospace;
     margin:0;
 }
-
 .container{
     width:80%;
     margin:auto;
@@ -21,24 +19,13 @@ body{
     padding:30px;
     box-shadow:0 0 20px #00ff00;
 }
-
-h1{
-    text-align:center;
-}
-
+h1{text-align:center;}
 .terminal{
     border:1px solid #00ff00;
     padding:20px;
 }
-
-.fase{
-    display:none;
-}
-
-.ativa{
-    display:block;
-}
-
+.fase{display:none;}
+.ativa{display:block;}
 input{
     background:black;
     color:#00ff00;
@@ -46,7 +33,6 @@ input{
     padding:10px;
     width:300px;
 }
-
 button{
     background:black;
     color:#00ff00;
@@ -54,18 +40,9 @@ button{
     padding:10px;
     cursor:pointer;
 }
-
-button:hover{
-    background:#003300;
-}
-
-.erro{
-    color:red;
-}
-
-.sucesso{
-    color:#00ff00;
-}
+button:hover{background:#003300;}
+.erro{color:red;}
+.sucesso{color:#00ff00;}
 </style>
 </head>
 
@@ -78,9 +55,13 @@ button:hover{
 <div id="inicio" class="fase ativa">
 <div class="terminal">
 <p>> Sistema iniciado...</p>
-<p>> Bem-vindo, agente.</p>
-<p>> Sua missão é resolver os enigmas do sistema.</p>
-<button onclick="iniciarMissao()">[ INICIAR MISSÃO ]</button>
+<p>> ACESSO RESTRITO</p>
+<p>> Digite a senha para iniciar a operação.</p>
+
+<input id="senha" placeholder="Senha de acesso">
+<br><br>
+<button onclick="verificarSenha()">[ AUTENTICAR ]</button>
+<p id="mensagemSenha"></p>
 </div>
 </div>
 
@@ -99,9 +80,7 @@ button:hover{
 
 <div id="fase2" class="fase">
 <div class="terminal">
-<p>> Acesso autorizado.</p>
 <p>> Missão 02 carregada.</p>
-<br>
 <p>> No século XVIII, uma importante cidade mineira se destacou pela exploração do ouro.</p>
 <p>> Seu centro histórico é considerado Patrimônio Mundial pela UNESCO.</p>
 <p>> Entre suas construções mais famosas estão a Igreja de São Francisco de Assis e diversas obras de Aleijadinho.</p>
@@ -116,7 +95,6 @@ button:hover{
 <div id="fase3" class="fase">
 <div class="terminal">
 <p>> Missão 03 carregada.</p>
-<br>
 <p>> Eu transformei oficinas em fábricas.</p>
 <p>> Troquei a força manual por máquinas.</p>
 <p>> Fiz o vapor mover engrenagens, locomotivas e navios.</p>
@@ -132,7 +110,6 @@ button:hover{
 <div id="fase4" class="fase">
 <div class="terminal">
 <p>> Missão 04 carregada.</p>
-<br>
 <p>> Sou uma relação famosa entre os lados de um triângulo retângulo.</p>
 <p>> Meus catetos trabalham juntos para revelar a hipotenusa.</p>
 <p>> Minha forma mais conhecida é:</p>
@@ -156,9 +133,21 @@ button:hover{
 </div>
 
 <script>
-function iniciarMissao(){
-    document.getElementById("inicio").classList.remove("ativa");
-    document.getElementById("fase1").classList.add("ativa");
+function verificarSenha(){
+    let senha = document.getElementById("senha").value;
+
+    if(senha == "7341"){
+        document.getElementById("mensagemSenha").innerHTML = "> Acesso autorizado.";
+        document.getElementById("mensagemSenha").className = "sucesso";
+
+        setTimeout(function(){
+            document.getElementById("inicio").classList.remove("ativa");
+            document.getElementById("fase1").classList.add("ativa");
+        },1000);
+    } else {
+        document.getElementById("mensagemSenha").innerHTML = "> Chave inválida.";
+        document.getElementById("mensagemSenha").className = "erro";
+    }
 }
 
 function normalizar(texto){
