@@ -33,14 +33,16 @@ input{
     padding:10px;
     width:300px;
 }
-button{
+button, a.botao{
     background:black;
     color:#00ff00;
     border:1px solid #00ff00;
     padding:10px;
     cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
 }
-button:hover{background:#003300;}
+button:hover, a.botao:hover{background:#003300;}
 .erro{color:red;}
 .sucesso{color:#00ff00;}
 </style>
@@ -127,16 +129,13 @@ button:hover{background:#003300;}
 <p>> Cofre digital encontrado.</p>
 <p>> O código possui 3 dígitos.</p>
 <br>
-
 <p><strong>314</strong> → Um número correto e na posição correta.</p>
 <p><strong>527</strong> → Nada está correto.</p>
 <p><strong>143</strong> → Dois números corretos, mas em posições erradas.</p>
 <p><strong>684</strong> → Um número correto, mas em posição errada.</p>
 <p><strong>364</strong> → Dois números corretos, mas em posições erradas.</p>
-
 <br>
 <p>> Qual é o código do cofre?</p>
-
 <input id="resposta5" placeholder="Digite o código">
 <br><br>
 <button onclick="verificarFase5()">[ ENVIAR RESPOSTA ]</button>
@@ -152,7 +151,6 @@ button:hover{background:#003300;}
 <p>> Trato de temas como privacidade, liberdade de expressão e neutralidade da rede.</p>
 <p>> Fui aprovado em 2014.</p>
 <p>> Que lei sou eu?</p>
-
 <input id="resposta6" placeholder="Digite a resposta">
 <br><br>
 <button onclick="verificarFase6()">[ ENVIAR RESPOSTA ]</button>
@@ -160,11 +158,16 @@ button:hover{background:#003300;}
 </div>
 </div>
 
-<div id="fase7" class="fase">
+<div id="final" class="fase">
 <div class="terminal">
-<p>> Lei identificada.</p>
-<p>> Missão 07 desbloqueada.</p>
-<h2>Próximo desafio em construção...</h2>
+<h2>> PARABÉNS, AGENTE!</h2>
+<p>> Você concluiu todas as missões do CTF Vértice.</p>
+<p>> Sua vitória foi registrada pelo sistema.</p>
+<p>> Para validar sua conquista e receber seu prêmio, preencha o formulário abaixo.</p>
+<br>
+<a class="botao" href="https://forms.gle/EaUKUutNGdrJyuA96" target="_blank">
+[ PREENCHER FORMULÁRIO ]
+</a>
 </div>
 </div>
 
@@ -285,12 +288,12 @@ function verificarFase6(){
     let resposta = normalizar(document.getElementById("resposta6").value);
 
     if(resposta.includes("marco civil da internet")){
-        document.getElementById("mensagem6").innerHTML = "> Resposta correta. Missão 07 desbloqueada.";
+        document.getElementById("mensagem6").innerHTML = "> Resposta correta. Todas as missões foram concluídas.";
         document.getElementById("mensagem6").className = "sucesso";
 
         setTimeout(function(){
             document.getElementById("fase6").classList.remove("ativa");
-            document.getElementById("fase7").classList.add("ativa");
+            document.getElementById("final").classList.add("ativa");
         },1200);
     } else {
         document.getElementById("mensagem6").innerHTML = "> Resposta incorreta. Pense em direitos e deveres na rede brasileira.";
